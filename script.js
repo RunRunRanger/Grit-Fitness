@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('content');
-  const dateEl = document.getElementById('date');
+  const dateEl = document.getElementById('workout-date');  // Fixed: new ID
 
   const data = JSON.parse(localStorage.getItem('dailyWorkout') || '{}');
 
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   dateEl.textContent = new Date(displayDate).toLocaleDateString(undefined, options);
 
-  if (!data.main && !data.warmup && !data.cooldown) {
+  if (!data.main && !data.warmup && !data.cooldown && !data.notes) {
     container.innerHTML = '<div class="section"><h2>No workout set for today</h2></div>';
     return;
   }
