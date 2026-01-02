@@ -30,7 +30,7 @@ body {
   flex-shrink: 0;
   background: linear-gradient(180deg, #000 0%, #111 100%);
   padding: 3vh 5vw 2vh;
-  border-bottom: 4px solid #00ff33;
+  border-bottom: 4px solid #FFFFFF;
 }
 
 #header h1 {
