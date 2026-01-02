@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Workout</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#000000">
+</head>
+<body>
+  <div id="workout-container">
+    <h1 id="date">Loading today's workout...</h1>
+    <div id="content"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Auto-reload at midnight
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0);
+    setTimeout(() => location.reload(), midnight - now);
+  </script>
+</body>
+</html>
