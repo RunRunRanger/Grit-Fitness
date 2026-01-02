@@ -9,23 +9,55 @@
   <meta name="theme-color" content="#000000">
 </head>
 <body>
+  <div id="header">
+    <h1 id="workout-date">Loading today's workout...</h1>
+    <div id="clock">Loading time...</div>
+  </div>
+
   <div id="workout-container">
-    <h1 id="date">Loading today's workout...</h1>
     <div id="content"></div>
   </div>
 
   <script src="script.js"></script>
   <script>
-    // Auto-reload at midnight
-    const now = new Date();
-    const midnight = new Date(now);
-    midnight.setHours(24, 0, 0, 0);
-    setTimeout(() => location.reload(), midnight - now);
+    // Live clock in Eastern Time
+    function updateClock() {
+      const options = {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      const dateOptions = {
+        timeZone: 'America/New_York',
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit'
+      };
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', options);
+      const dateStr = now.toLocaleDateString('en-US', dateOptions);
+
+      document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
+    }
+
+    // Update clock immediately and every second
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Auto-reload at midnight (Eastern Time)
+    const nowET = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+    const today = new Date(nowET);
+    const midnightET = new Date(today);
+    midnightET.setHours(24, 0, 0, 0);
+    setTimeout(() => location.reload(), midnightET - today);
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
   </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
 </body>
 </html>
