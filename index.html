@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="header">
-    <h1 id="workout-date">Loading today's workout...</h1>
+    <h1 id="workout-date">Loading todays workout...</h1>
     <div id="clock">Loading time...</div>
   </div>
 
@@ -20,7 +20,6 @@
 
   <script src="script.js"></script>
   <script>
-    // Live clock in Eastern Time
     function updateClock() {
       const options = {
         timeZone: 'America/New_York',
@@ -35,25 +34,20 @@
         day: '2-digit',
         year: '2-digit'
       };
-
       const now = new Date();
       const timeStr = now.toLocaleTimeString('en-US', options);
       const dateStr = now.toLocaleDateString('en-US', dateOptions);
-
-      document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
+      document.getElementById('clock').textContent = dateStr + ' ' + timeStr;
     }
-
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Auto-reload at midnight Eastern Time
-    const nowET = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+    const nowET = new Date().toLocaleString('en-US', {timeZone: 'America/New_York'});
     const today = new Date(nowET);
     const midnightET = new Date(today);
     midnightET.setHours(24, 0, 0, 0);
-    setTimeout(() => location.reload(), midnightET - today);
+    setTimeout(function() { location.reload(); }, midnightET - today);
 
-    // Service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
