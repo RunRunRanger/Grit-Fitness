@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Workout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin">
+  <div class="form-container">
+    <h1>Edit Today's Workout</h1>
+    <form id="workout-form">
+      <label>Date (optional, defaults to today):</label>
+      <input type="date" id="date-input"><br><br>
+
+      <label>Warm-up:</label>
+      <textarea id="warmup" rows="4" placeholder="e.g. 5 min cardio"></textarea><br><br>
+
+      <label>Main Exercises:</label>
+      <textarea id="main" rows="10" placeholder="e.g. Squats - 4x10&#10;Bench Press - 3x12"></textarea><br><br>
+
+      <label>Cool-down:</label>
+      <textarea id="cooldown" rows="4"></textarea><br><br>
+
+      <label>Notes:</label>
+      <textarea id="notes" rows="4"></textarea><br><br>
+
+      <button type="submit">Save Workout</button>
+    </form>
+    <p id="status"></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById('workout-form');
+    const status = document.getElementById('status');
+
+    // Load current workout
+    const data = JSON.parse(localStorage.getItem('dailyWorkout') || '{}');
+    if (data.date) document.getElementById('date-input').value = data.date;
+    if (data.warmup) document.getElementById('warmup').value = data.warmup;
+    if (data.main) document.getElementById('main').value = data.main;
+    if (data.cooldown) document.getElementById('cooldown').value = data.cooldown;
+    if (data.notes) document.getElementById('notes').value = data.notes;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const date = document.getElementById('date-input').value || new Date().toISOString().split('T')[0];
+      const workout = {
+        date,
+        warmup: document.getElementById('warmup').value.trim(),
+        main: document.getElementById('main').value.trim(),
+        cooldown: document.getElementById('cooldown').value.trim(),
+        notes: document.getElementById('notes').value.trim()
+      };
+      localStorage.setItem('dailyWorkout', JSON.stringify(workout));
+      status.textContent = 'Workout saved! Visible on the display now.';
+      status.style.color = 'green';
+      setTimeout(() => status.textContent = '', 3000);
+    });
+  </script>
+</body>
+</html>
