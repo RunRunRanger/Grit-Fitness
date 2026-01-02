@@ -18,53 +18,53 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  font-size: 44px;
+  font-size: clamp(20px, 4vw, 44px); /* Scales smoothly from mobile to TV */
   line-height: 1.6;
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-/* ==================== FIXED HEADER ==================== */
+/* ==================== HEADER ==================== */
 #header {
   position: relative;
   flex-shrink: 0;
   background: linear-gradient(180deg, #000000 0%, #0f172a 100%);
-  padding: 2vh 5vw 1.5vh;  /* Reduced top/bottom padding → shorter header */
-  border-bottom: none;
+  padding: clamp(1rem, 3vh, 2.5rem) 5vw clamp(0.8rem, 2vh, 1.5rem);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 #header h1 {
-  font-size: clamp(3.5rem, 5.5vw, 5.5rem);  /* Slightly smaller than before */
+  font-size: clamp(2rem, 7vw, 5.5rem);
   font-weight: 700;
   text-align: center;
   color: #FFFFFF;
   text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
   margin: 0;
 }
- 
+
+/* ==================== CLOCK (Bottom Right) ==================== */
 #clock {
   position: fixed;
-  bottom: 40px;
-  right: 60px;
-  font-size: 48px;
+  bottom: clamp(12px, 4vh, 40px);
+  right: clamp(12px, 4vw, 60px);
+  font-size: clamp(28px, 6vw, 48px);
   font-weight: 500;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
-  padding: 12px 28px;
+  padding: clamp(8px, 2vh, 12px) clamp(16px, 4vw, 28px);
   border-radius: 20px;
-  border: 2px solid #60A5FA;           /* Soft blue border */
+  border: 2px solid #60A5FA;
   color: #FFFFFF;
   white-space: nowrap;
   z-index: 100;
   box-shadow: 0 8px 32px rgba(96, 165, 250, 0.15);
 }
 
-/* ==================== PERFECTLY CENTERED WORKOUT ==================== */
+/* ==================== WORKOUT CONTAINER ==================== */
 #workout-container {
   flex: 1;
   overflow-y: auto;
-  padding: 4vh 8vw 8vh;
+  padding: clamp(2rem, 5vh, 4rem) clamp(4vw, 6vw, 8vw) clamp(8rem, 12vh, 8rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,110 +88,105 @@ body {
 .section {
   width: 100%;
   max-width: 1200px;
-  margin-bottom: 12vh;
+  margin-bottom: clamp(6vh, 10vh, 12vh);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
 .section h2 {
-  font-size: clamp(4.5rem, 7vw, 6.5rem);
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
   font-weight: 700;
-  color: #60A5FA;                      /* Soft modern blue */
+  color: #60A5FA;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4vh;
+  letter-spacing: 0.04em;
+  margin-bottom: clamp(2rem, 4vh, 4rem);
   text-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
 }
 
 pre {
   width: 100%;
-  max-width: 100%;
-  font-family: inherit;
-  font-size: 1em;
-  line-height: 1.65;
+  font-size: clamp(20px, 4.5vw, 1em);
+  line-height: 1.7;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  text-align: center !important;
-  color: #FFFFFF;                      /* Pure white text */
-  background: rgba(20, 20, 30, 0.8);   /* Very dark navy backdrop */
-  padding: 3vh 4vw;
-  border-radius: 2rem;
-  border: 2px solid rgba(96, 165, 250, 0.3);  /* Subtle blue border */
-  box-shadow: 
+  text-align: center;
+  color: #FFFFFF;
+  background: rgba(20, 20, 30, 0.8);
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(3vw, 5vw, 4vw);
+  border-radius: clamp(1rem, 3vw, 2rem);
+  border: 2px solid rgba(96, 165, 250, 0.3);
+  box-shadow:
     0 0 40px rgba(96, 165, 250, 0.1),
     inset 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
-/* ==================== EMPTY STATE ==================== */
+/* Empty state */
 .section h2:only-child {
-  font-size: clamp(4rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
   color: #ff4444;
   text-shadow: 0 0 30px rgba(255, 68, 68, 0.6);
 }
 
-/* ==================== ADMIN PAGE (MOBILE/TABLET) ==================== */
+/* ==================== ADMIN PAGE (Highly Mobile-Friendly) ==================== */
 .admin {
   overflow-y: auto;
   background: #0a0a0a;
-  padding: 2vh 4vw;
-  font-size: 24px;
+  padding: 4vw;
 }
 
 .form-container {
-  max-width: 95vw;
+  max-width: 96vw;
   margin: 4vh auto;
   background: rgba(34, 34, 34, 0.95);
   backdrop-filter: blur(20px);
-  padding: 6vh 5vw;
-  border-radius: 2.5rem;
-  border: 2px solid #00ff33;
+  padding: clamp(2rem, 6vh, 6rem) 6vw;
+  border-radius: 2rem;
+  border: 2px solid #60A5FA; /* Matches main theme now */
 }
 
 .form-container h1 {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 7vw, 3.5rem);
   text-align: center;
   margin-bottom: 6vh;
-  color: #00ff33;
+  color: #60A5FA;
 }
 
 label {
   display: block;
-  font-size: 1.2em;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
   font-weight: 600;
   margin: 3vh 0 1vh 0;
-  color: #ccc;
+  color: #ddd;
 }
 
 input, textarea {
   width: 100%;
-  min-height: 12vh;
-  padding: 2vh 3vw;
-  font-size: 1.1em;
-  font-family: inherit;
+  min-height: clamp(60px, 12vh, 80px);
+  padding: clamp(12px, 3vh, 16px) clamp(12px, 4vw, 16px);
+  font-size: clamp(16px, 4.5vw, 1.1em);
   background: rgba(51, 51, 51, 0.9);
   color: #fff;
   border: 2px solid #444;
-  border-radius: 1.5rem;
-  transition: all 0.3s ease;
+  border-radius: 1.2rem;
+  transition: border-color 0.3s ease;
 }
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: #00ff33;
-  box-shadow: 0 0 20px rgba(0, 255, 51, 0.4);
+  border-color: #60A5FA;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
 }
 
 button {
   width: 100%;
   margin-top: 6vh;
-  padding: 3vh 0;
-  font-size: 1.4em;
+  padding: clamp(14px, 4vh, 20px);
+  font-size: clamp(1.2rem, 5vw, 1.6rem);
   font-weight: 700;
-  background: linear-gradient(135deg, #00cc00, #00ff33);
+  background: linear-gradient(135deg, #3b82f6, #60A5FA);
   color: #000;
   border: none;
   border-radius: 2rem;
@@ -201,27 +196,15 @@ button {
 
 button:hover, button:active {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 255, 51, 0.4);
+  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.4);
 }
 
 #status {
   text-align: center;
-  font-size: 1.2em;
+  font-size: clamp(1rem, 4vw, 1.2em);
   margin-top: 4vh;
   min-height: 5vh;
   padding: 2vh;
 }
 
-/* ==================== FIRE STICK / TV OPTIMIZATIONS ==================== */
-@media (max-width: 1920px) {
-  body { font-size: 40px; }
-  #header h1 { font-size: 7rem; }
-  #clock { font-size: 4rem; }
-  .section h2 { font-size: 5.5rem; }
-  pre { font-size: 40px; }
-}
-
-@media (max-height: 1080px) {
-  #workout-container { padding: 2vh 6vw 6vh; }
-  .section { margin-bottom: 8vh; }
-}
+/* Remove old TV-only media queries — now fully responsive with clamp() */
