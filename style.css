@@ -34,27 +34,26 @@ body {
 }
 
 #header h1 {
-  font-size: clamp(5rem, 8vw, 9rem);
-  font-weight: 700;
-  text-align: center;
-  text-shadow: 0 0 30px rgba(0, 255, 51, 0.5);
-  margin: 0;
+  font-size: clamp(4rem, 6vw, 6rem);
+  color: #FFFFFF;
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
 }
 
 #clock {
-  position: fixed;           /* Stays in place while scrolling */
-  bottom: 40px;              /* Distance from bottom */
-  right: 60px;               /* Distance from right */
-  font-size: 48px;           /* Smaller than before - adjust if needed */
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  font-size: 48px;
   font-weight: 500;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   padding: 12px 28px;
   border-radius: 20px;
-  border: 2px solid #00ff33;
+  border: 2px solid #60A5FA;           /* Soft blue border */
+  color: #FFFFFF;
   white-space: nowrap;
   z-index: 100;
-  box-shadow: 0 8px 32px rgba(0, 255, 51, 0.2);
+  box-shadow: 0 8px 32px rgba(96, 165, 250, 0.15);
 }
 
 /* ==================== PERFECTLY CENTERED WORKOUT ==================== */
@@ -96,11 +95,11 @@ body {
 .section h2 {
   font-size: clamp(4.5rem, 7vw, 6.5rem);
   font-weight: 700;
-  color: #00ff33;
+  color: #60A5FA;                      /* Soft modern blue */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 4vh;
-  text-shadow: 0 0 40px rgba(0, 255, 51, 0.6);
+  text-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
 }
 
 pre {
@@ -113,13 +112,14 @@ pre {
   word-wrap: break-word;
   overflow-wrap: break-word;
   text-align: center !important;
-  background: rgba(17, 17, 17, 0.8);
+  color: #FFFFFF;                      /* Pure white text */
+  background: rgba(20, 20, 30, 0.8);   /* Very dark navy backdrop */
   padding: 3vh 4vw;
   border-radius: 2rem;
-  border: 2px solid rgba(0, 255, 51, 0.3);
+  border: 2px solid rgba(96, 165, 250, 0.3);  /* Subtle blue border */
   box-shadow: 
-    0 0 40px rgba(0, 255, 51, 0.15),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
+    0 0 40px rgba(96, 165, 250, 0.1),
+    inset 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 /* ==================== EMPTY STATE ==================== */
