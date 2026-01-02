@@ -97,3 +97,29 @@ button {
   cursor: pointer;
   width: 100%;
 }
+#header {
+  position: relative; /* Allows absolute positioning of clock */
+  flex-shrink: 0;
+  padding: 30px 60px 20px;
+  background: #000;
+  z-index: 10;
+}
+
+#header h1 {
+  font-size: 72px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+#clock {
+  position: absolute;
+  top: 30px;
+  right: 60px;
+  font-size: 48px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
