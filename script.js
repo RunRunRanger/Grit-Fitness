@@ -5,11 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const stored = localStorage.getItem('dailyWorkout');
   const data = stored ? JSON.parse(stored) : {};
 
-  const today = new Date().toISOString().split('T')[0];
-  const displayDate = data.date || today;
+  // Use today's date if none saved
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0]; // YYYY-MM-DD local
+
+  const savedDateStr = data.date || todayStr;
+
+  // Create date from YYYY-MM-DD string in LOCAL time (avoids UTC shift)
+  const [year, month, day] = savedDateStr.split('-');
+  const displayDate = new Date(year, month - 1, day); // month is 0-indexed
 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  dateEl.textContent = new Date(displayDate).toLocaleDateString(undefined, options);
+  dateEl.textContent = displayDate.toLocaleDateString(undefined, options);
 
   if (!data.warmup && !data.main && !data.cooldown && !data.notes) {
     container.innerHTML = '<div class="section"><h2>No workout set for today</h2></div>';
