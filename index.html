@@ -43,18 +43,17 @@
       document.getElementById('clock').textContent = `${dateStr} ${timeStr}`;
     }
 
-    // Update clock immediately and every second
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Auto-reload at midnight (Eastern Time)
+    // Auto-reload at midnight Eastern Time
     const nowET = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
     const today = new Date(nowET);
     const midnightET = new Date(today);
     midnightET.setHours(24, 0, 0, 0);
     setTimeout(() => location.reload(), midnightET - today);
 
-    // Register service worker
+    // Service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
