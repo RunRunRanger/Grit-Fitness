@@ -19,38 +19,35 @@
   </div>
 
   <script src="script.js"></script>
-  <script>
-    function updateClock() {
-      const options = {
-        timeZone: 'America/New_York',
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-      };
-      const dateOptions = {
-        timeZone: 'America/New_York',
-        month: '2-digit',
-        day: '2-digit',
-        year: '2-digit'
-      };
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('en-US', options);
-      const dateStr = now.toLocaleDateString('en-US', dateOptions);
-      document.getElementById('clock').textContent = dateStr + ' ' + timeStr;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
+<script>
+  function updateClock() {
+    const options = {
+      timeZone: 'America/New_York',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    };
 
-    const nowET = new Date().toLocaleString('en-US', {timeZone: 'America/New_York'});
-    const today = new Date(nowET);
-    const midnightET = new Date(today);
-    midnightET.setHours(24, 0, 0, 0);
-    setTimeout(function() { location.reload(); }, midnightET - today);
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', options); // e.g., 3:45 PM
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-  </script>
+    document.getElementById('clock').textContent = timeStr;
+  }
+
+  updateClock();
+  setInterval(updateClock, 30000); // Update every 30 seconds (plenty for minutes)
+
+  // Auto-reload at midnight Eastern Time
+  const nowET = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+  const today = new Date(nowET);
+  const midnightET = new Date(today);
+  midnightET.setHours(24, 0, 0, 0);
+  setTimeout(() => location.reload(), midnightET - today);
+
+  // Service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
 </body>
 </html>
