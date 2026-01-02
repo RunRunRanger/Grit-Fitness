@@ -1,0 +1,85 @@
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 64px;
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+#workout-container {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.section {
+  margin-bottom: 60px;
+  font-size: 36px;
+  line-height: 1.6;
+}
+
+.section h2 {
+  font-size: 52px;
+  margin: 0 0 20px 0;
+  color: #00ff00;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin: 0;
+  font-family: inherit;
+  font-size: 36px;
+}
+
+/* Admin page styles */
+.admin {
+  justify-content: start;
+  padding: 20px;
+  background: #111;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.form-container h1 { font-size: 40px; }
+label { font-size: 24px; display: block; margin-top: 20px; }
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 20px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 6px;
+}
+button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 24px;
+  background: #00aa00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
