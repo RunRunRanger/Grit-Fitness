@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('content');
-  const dateEl = document.getElementById('workout-date');  // Fixed: new ID
+  const dateEl = document.getElementById('workout-date');
 
-  const data = JSON.parse(localStorage.getItem('dailyWorkout') || '{}');
+  const stored = localStorage.getItem('dailyWorkout');
+  const data = stored ? JSON.parse(stored) : {};
 
   const today = new Date().toISOString().split('T')[0];
   const displayDate = data.date || today;
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   dateEl.textContent = new Date(displayDate).toLocaleDateString(undefined, options);
 
-  if (!data.main && !data.warmup && !data.cooldown && !data.notes) {
+  if (!data.warmup && !data.main && !data.cooldown && !data.notes) {
     container.innerHTML = '<div class="section"><h2>No workout set for today</h2></div>';
     return;
   }
